@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -eu
+
+node() {
+    printf "%s:\n" "$node"
+    printf "  name: %s\n" "$node"
+}
+attributes() {
+    kv_arr=( "$@" )
+    for kv in "${kv_arr[@]}"
+    do
+	    value=${kv#*=}
+	    name=${kv%=*}
+	    printf "  %s: %s\n" "$name" "$value"	
+    done
+}
+
+IFS=, 
+read -ra NODES <<< "$1"
+read -ra ATTRIBUTES <<< "$2"
+
+for node in "${NODES[@]}"
+do
+    node "$node"
+    attributes "${ATTRIBUTES[@]}"
+done

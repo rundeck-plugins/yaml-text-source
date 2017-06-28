@@ -1,0 +1,53 @@
+name: resourceyaml-text-model-source
+version: 1.0.0
+rundeckPluginVersion: 1.1
+author: alexh
+date: Wed Sep 28 16:59:30 PDT 2016
+providers:
+  - name: yaml-text-model-source
+    service: ResourceModelSource
+    title: 'resourceyaml text'
+    description: 'Define a set of static Nodes'
+    plugin-type: script
+    script-interpreter: /usr/bin/env bash
+    script-file: get-nodes
+    resource-format: resourceyaml
+    config:
+      - type: String
+        name: name
+        title: 'name'
+        description: 'name for this model source'
+      - type: String
+        name: yaml-text
+        title: 'Yaml Text'
+        description: "Node definitions. Reference: http://rundeck.org/docs/man5/resource-yaml.html"
+        default: |
+            # hypothetical node, somenode2
+            somenode2:
+              tags: "pool,service"
+              pool.color: green
+              pool.region: US-East
+              service.size: micro
+              service.status: active
+            # next-node: ...
+        renderingOptions:
+          displayType: CODE
+          codeSyntaxMode: yaml
+  - name: yaml-text-model-defaults
+    service: ResourceModelSource
+    title: 'Model defaults'
+    description: 'Define a set of static defaults for Nodes'
+    plugin-type: script
+    script-interpreter: /usr/bin/env bash
+    script-file: defaults
+    script-args: '${config.names} ${config.attributes}'
+    resource-format: resourceyaml
+    config:
+      - type: String
+        name: names
+        title: 'names'
+        description: 'comma separated list of node names'
+      - type: String
+        name: attributes
+        title: 'attributes'
+        description: 'comma separated list of attributes (eg, attr1=one,attr2=2,...)'        
