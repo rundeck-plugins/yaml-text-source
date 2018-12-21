@@ -1,8 +1,16 @@
 name: resourceyaml-text-model-source
-version: 1.0.0
-rundeckPluginVersion: 1.1
-author: alexh
-date: Wed Sep 28 16:59:30 PDT 2016
+rundeckPluginVersion: 2.0
+author: "@author@"
+version: "@version@"
+url: "@url@"
+date: 2016-09-28T14:09:49.981Z
+description: Define a set of static Nodes
+rundeckCompatibilityVersion: 3.x
+targetHostCompatibility: unix
+license: Apache 2.0
+tags:
+    - script
+    - ResourceModelSource
 providers:
   - name: yaml-text-model-source
     service: ResourceModelSource
