@@ -27,7 +27,9 @@ scmVersion {
     }
 }
 
-project.version = scmVersion.version
+// Override version for Grails 7 upgrade testing
+// project.version = scmVersion.version
+project.version = '2.0.3-grails7-upgrade-test'
 ext.archiveFilename = ext.archivesBaseName + '-' + version
 
 // Plugin ZIP task (modernized from the external script)
